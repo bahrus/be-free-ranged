@@ -14,7 +14,7 @@ It is noteworthy that [frameworks support](https://reactjs.org/docs/fragments.ht
     <li be-free-ranged=my-fragment>List Item  1</li>
     <li>List Item 2</li>
     <li>List Item 3</li>
-    <li data-post-my-fragment>Footer</li>
+    <li data-end=/my-fragment>Footer</li>
 </ul>
 ```
 
