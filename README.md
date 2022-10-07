@@ -11,10 +11,16 @@ It is noteworthy that [frameworks support](https://reactjs.org/docs/fragments.ht
 ```html
 <ul>
     <li>Header</li>
-    <li be-free-ranged=my-fragment data-cnt=3>List Item  1</li>
+    <li data-cnt=3>List Item  1</li>
     <li>List Item 2</li>
     <li>List Item 3</li>
     <li>Footer</li>
+    <script be-free-ranged>
+    </script>
 </ul>
 ```
+
+... does the following:
+
+1.  Attaches "scope" to element with attribute data-cnt
 
