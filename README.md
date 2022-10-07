@@ -23,4 +23,5 @@ It is noteworthy that [frameworks support](https://reactjs.org/docs/fragments.ht
 ... does the following:
 
 1.  Attaches "scope" to element with attribute data-cnt
+2.  Adds property innerHTML, method appendChild, etc to scope.
 
