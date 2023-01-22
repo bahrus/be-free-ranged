@@ -1,6 +1,6 @@
 {
   "name": "be-free-ranged",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Manage a range of next siblings as if they were children",
   "keywords": [
     "web-components",
