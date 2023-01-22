@@ -9,14 +9,16 @@ But there are some important edge cases where that limitation is a bit of an iss
 It is noteworthy that [frameworks support](https://reactjs.org/docs/fragments.html) this as well.
 
 ```html
-<ul>
-    <li>Header</li>
+<template id=three-lis>
     <li data-cnt=3>List Item  1</li>
     <li>List Item 2</li>
     <li>List Item 3</li>
+    
+<template>
+<ul>
+    <li>Header</li>
+    <template be-free-ranged=three-lis></template>
     <li>Footer</li>
-    <script be-free-ranged>
-    </script>
 </ul>
 ```
 

@@ -2,6 +2,12 @@
   "name": "be-free-ranged",
   "version": "0.0.0",
   "description": "",
+  "keywords": [
+    "web-components",
+    "web-component",
+    "custom-element",
+    "custom-elements"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +15,16 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bahrus/be-free-ranged.git"
+  },
+  "dependencies": {
+    "be-decorated": "0.0.222",
+    "be-hive": "0.0.79",
+    "trans-render": "0.0.663"
+  },
+  "devDependencies": {
+    "may-it-serve": "0.0.4",
+    "@playwright/test": "1.29.2",
+    "@skypack/package-check": "0.2.2"
   },
   "author": "",
   "license": "MIT",
