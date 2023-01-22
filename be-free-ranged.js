@@ -4,7 +4,6 @@ export class BeFreeRanged extends EventTarget {
         const { host, transformIslets, self, template } = pp;
         const { DTR } = await import('trans-render/lib/DTR.js');
         const clone = template.content.cloneNode(true);
-        //const {getAdjacentChildren} = await import('trans-render/lib/getAdjacentChildren.js');
         for (const transformIslet of transformIslets) {
             const { transform, islet } = transformIslet;
             const ctx = {
@@ -26,6 +25,14 @@ export class BeFreeRanged extends EventTarget {
             insertAdjacentClone(clone, self, 'afterend');
         }
         self.dataset.cnt = cnt + '';
+        const { getDestructArgs } = await import('trans-render/lib/getDestructArgs.js');
+        const { getAdjacentChildren } = await import('trans-render/lib/getAdjacentChildren.js');
+        for (const transformIslet of transformIslets) {
+            const { transform, islet } = transformIslet;
+            //const isletSt = islet.toString();
+            const args = getDestructArgs(islet);
+            console.log({ args });
+        }
         // host!.addEventListener('prop-changed', e => {
         //     const prop = (e as CustomEvent).detail.prop;
         //     if(observe!.includes(prop)){

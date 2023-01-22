@@ -7,7 +7,7 @@ export class BeFreeRanged extends EventTarget implements Actions{
         const {host, transformIslets, self, template} = pp;
         const {DTR} = await import('trans-render/lib/DTR.js');
         const clone = template!.content.cloneNode(true) as DocumentFragment;
-        //const {getAdjacentChildren} = await import('trans-render/lib/getAdjacentChildren.js');
+        
         for(const transformIslet of transformIslets!){
             const {transform, islet} = transformIslet;
             const ctx: RenderContext = {
@@ -29,18 +29,25 @@ export class BeFreeRanged extends EventTarget implements Actions{
             insertAdjacentClone(clone, self!, 'afterend');
         }
         self.dataset.cnt = cnt + '';
-
-            // host!.addEventListener('prop-changed', e => {
-            //     const prop = (e as CustomEvent).detail.prop;
-            //     if(observe!.includes(prop)){
-            //         islet(host);
-            //         ctx.host = host;
-            //         const children = getAdjacentChildren(refTempl);
-            //         transformer.transform(children);
-            //     }
-                
-                
-            // });
+        const {getDestructArgs} = await import('trans-render/lib/getDestructArgs.js');
+        const {getAdjacentChildren} = await import('trans-render/lib/getAdjacentChildren.js');
+        for(const transformIslet of transformIslets!){
+            const {transform, islet} = transformIslet;
+            //const isletSt = islet.toString();
+            const args = getDestructArgs(islet);
+            console.log({args});
+        }
+        // host!.addEventListener('prop-changed', e => {
+        //     const prop = (e as CustomEvent).detail.prop;
+        //     if(observe!.includes(prop)){
+        //         islet(host);
+        //         ctx.host = host;
+        //         const children = getAdjacentChildren(refTempl);
+        //         transformer.transform(children);
+        //     }
+            
+            
+        // });
         
         return mold;
     }
