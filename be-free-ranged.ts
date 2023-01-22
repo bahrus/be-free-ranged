@@ -8,7 +8,7 @@ export class BeFreeRanged extends EventTarget implements Actions{
         const {DTR} = await import('trans-render/lib/DTR.js');
         const {getDestructArgs} = await import('trans-render/lib/getDestructArgs.js');
         const clone = template!.content.cloneNode(true) as DocumentFragment;
-        
+        const {IsletTransformer} = await import('./IsletTransformer.js');
 
         for(const transformIslet of transformIslets!){
             const {transform, islet} = transformIslet;
@@ -21,6 +21,7 @@ export class BeFreeRanged extends EventTarget implements Actions{
                 match: transform,
             };
             const transformer = new DTR(ctx);
+            transformIslet.transformer = transformer;
 
             let {transformDependencies} = transformIslet;
             if(transformDependencies === undefined){
@@ -42,24 +43,11 @@ export class BeFreeRanged extends EventTarget implements Actions{
         }
         self.dataset.cnt = cnt + '';
         
-        const {getAdjacentChildren} = await import('trans-render/lib/getAdjacentChildren.js');
-        // for(const transformIslet of transformIslets!){
-        //     const {transform, islet} = transformIslet;
-        //     //const isletSt = islet.toString();
-        //     const args = getDestructArgs(islet);
-        //     console.log({args});
-        // }
-        // host!.addEventListener('prop-changed', e => {
-        //     const prop = (e as CustomEvent).detail.prop;
-        //     if(observe!.includes(prop)){
-        //         islet(host);
-        //         ctx.host = host;
-        //         const children = getAdjacentChildren(refTempl);
-        //         transformer.transform(children);
-        //     }
-            
-            
-        // });
+
+        for(const transformIslet of transformIslets!){
+            new IsletTransformer(self, transformIslet, host!);
+        }
+        
         
         return mold;
     }

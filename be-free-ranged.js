@@ -5,6 +5,7 @@ export class BeFreeRanged extends EventTarget {
         const { DTR } = await import('trans-render/lib/DTR.js');
         const { getDestructArgs } = await import('trans-render/lib/getDestructArgs.js');
         const clone = template.content.cloneNode(true);
+        const { IsletTransformer } = await import('./IsletTransformer.js');
         for (const transformIslet of transformIslets) {
             const { transform, islet } = transformIslet;
             let { isletDependencies } = transformIslet;
@@ -16,6 +17,7 @@ export class BeFreeRanged extends EventTarget {
                 match: transform,
             };
             const transformer = new DTR(ctx);
+            transformIslet.transformer = transformer;
             let { transformDependencies } = transformIslet;
             if (transformDependencies === undefined) {
                 transformDependencies = transformIslet.transformDependencies = await transformer.getDep();
@@ -35,22 +37,9 @@ export class BeFreeRanged extends EventTarget {
             insertAdjacentClone(clone, self, 'afterend');
         }
         self.dataset.cnt = cnt + '';
-        const { getAdjacentChildren } = await import('trans-render/lib/getAdjacentChildren.js');
-        // for(const transformIslet of transformIslets!){
-        //     const {transform, islet} = transformIslet;
-        //     //const isletSt = islet.toString();
-        //     const args = getDestructArgs(islet);
-        //     console.log({args});
-        // }
-        // host!.addEventListener('prop-changed', e => {
-        //     const prop = (e as CustomEvent).detail.prop;
-        //     if(observe!.includes(prop)){
-        //         islet(host);
-        //         ctx.host = host;
-        //         const children = getAdjacentChildren(refTempl);
-        //         transformer.transform(children);
-        //     }
-        // });
+        for (const transformIslet of transformIslets) {
+            new IsletTransformer(self, transformIslet, host);
+        }
         return mold;
     }
 }
